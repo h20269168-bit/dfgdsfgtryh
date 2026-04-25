@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Noto+Sans+KR:wght@300;400;700;900&family=Noto+Serif+KR:wght@300;400;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-gold: #C5A059;
+  --color-brand-gold-bright: #E8D2A6;
+  --color-brand-black: #04231B;
+  --color-slate-grey: #A0A0A0;
+  --color-off-white: #FFFFFF;
+  --color-silver-bright: #E0E0E0;
+  --font-sans: "Inter", "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif KR", serif;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-black text-off-white antialiased overflow-x-hidden p-0 m-0;
+    font-family: var(--font-sans);
+    cursor: crosshair;
+  }
+
+  button, a {
+    cursor: crosshair !important;
+  }
+}
+
+@layer components {
+  .secondary-text {
+    @apply text-slate-grey font-bold tracking-[0.2em] text-[11px] uppercase;
+  }
+
+  .gold-text {
+    background: linear-gradient(to bottom, #C5A059 0%, #F8E5B7 50%, #C5A059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @apply drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)];
+  }
+
+  .shining-gold {
+    animation: text-shine 3s ease-in-out infinite alternate;
+  }
+
+  .gold-border {
+    position: relative;
+    border: 1px solid transparent;
+    background: linear-gradient(var(--color-brand-black), var(--color-brand-black)) padding-box,
+                linear-gradient(to bottom right, #C5A059, #F1D592, #C5A059) border-box;
+  }
+
+  .btn-gold {
+    @apply relative overflow-hidden px-14 py-5 font-black italic uppercase tracking-widest transition-all active:scale-95 disabled:opacity-30;
+    border: 2px solid transparent;
+    background: linear-gradient(var(--color-brand-black), var(--color-brand-black)) padding-box,
+                linear-gradient(to bottom right, #C5A059, #F1D592, #C5A059, #E8D2A6, #C5A059) border-box;
+    color: #C5A059;
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.1);
+  }
+
+  .btn-gold:hover {
+    background: linear-gradient(to bottom right, #C5A059, #F1D592, #C5A059) padding-box,
+                linear-gradient(to bottom right, #C5A059, #F1D592, #C5A059) border-box;
+    color: #000814;
+    box-shadow: 0 0 40px rgba(197, 160, 89, 0.4);
+  }
+
+  .minimal-card {
+    @apply bg-white/[0.01] border border-white/5 p-8 transition-all backdrop-blur-md shadow-2xl;
+  }
+
+  .minimal-card:hover {
+    @apply border-brand-gold/50 bg-white/[0.03];
+    box-shadow: 0 0 30px rgba(197, 160, 89, 0.1);
+  }
+
+  .aurora-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: #04231B;
+  }
+
+  .aurora-layer {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.15) 0%, transparent 70%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 40%),
+                conic-gradient(from 180deg at 50% 50%, #04231B, #063126, #04231B);
+    filter: blur(60px);
+    animation: silk-ripple 15s ease-in-out infinite alternate;
+    opacity: 0.6;
+  }
+}
+
+@keyframes rotating-dots {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes text-shine {
+  0% { text-shadow: 0 0 10px rgba(197, 160, 89, 0.2); filter: brightness(1); }
+  100% { text-shadow: 0 0 30px rgba(197, 160, 89, 0.8); filter: brightness(1.3); }
+}
+
+.rotating-particles {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  animation: rotating-dots 4s linear infinite;
+}
+
+.rotating-particles .dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #C5A059;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #C5A059;
+}
+
+@keyframes silk-ripple {
+  0% { transform: scale(1) rotate(0deg) translate(0, 0); }
+  50% { transform: scale(1.1) rotate(2deg) translate(-2%, 2%); }
+  100% { transform: scale(1) rotate(-2deg) translate(2%, -2%); }
+}
+
+@keyframes gold-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-gold {
+  background: linear-gradient(90deg, #C5A059 0%, #F1D592 50%, #C5A059 100%);
+  background-size: 200% 100%;
+  animation: gold-shimmer 3s infinite linear;
+}
+
+/* Gold Hourglass Animation */
+.hourglass-loader {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  animation: hourglass-flip 2s infinite ease-in-out;
+}
+
+.hourglass-loader::before, .hourglass-loader::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #C5A059;
+  left: 10px;
+}
+
+.hourglass-loader::before {
+  top: 0;
+  border-bottom: none;
+  border-radius: 40px 40px 0 0;
+  background: linear-gradient(to top, #C5A059, transparent);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  animation: sand-top 2s infinite linear;
+}
+
+.hourglass-loader::after {
+  bottom: 0;
+  border-top: none;
+  border-radius: 0 0 40px 40px;
+  background: linear-gradient(to bottom, #C5A059, transparent);
+  background-size: 100% 0%;
+  background-repeat: no-repeat;
+  animation: sand-bottom 2s infinite linear;
+}
+
+@keyframes hourglass-flip {
+  0% { transform: rotate(0deg); }
+  45% { transform: rotate(0deg); }
+  55% { transform: rotate(180deg); }
+  100% { transform: rotate(180deg); }
+}
+
+@keyframes sand-top {
+  0% { background-size: 100% 100%; }
+  45% { background-size: 100% 0%; }
+  100% { background-size: 100% 0%; }
+}
+
+@keyframes sand-bottom {
+  0% { background-size: 100% 0%; }
+  45% { background-size: 100% 100%; }
+  100% { background-size: 100% 100%; }
+}
+
+.flash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: linear-gradient(45deg, #FFFFFF, #F1D592, #FFFFFF);
+  pointer-events: none;
+}
+
+@keyframes spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-spin-reverse {
+  animation: spin-reverse 3s linear infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #04231B;
+}
+::-webkit-scrollbar-thumb {
+  background: #C5A059;
+}
+
+.gold-dust-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #C5A059;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #F1D592;
+  pointer-events: none;
+}
+
+@keyframes gold-dust-explosion {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--tw-translate-x), var(--tw-translate-y)) scale(0); opacity: 0; }
+}
